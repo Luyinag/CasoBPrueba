@@ -1,0 +1,82 @@
+{%extends "Plankton/plantillas/base.html"%}
+{% block title %} Plankton - Contacto {% endblock %}
+{% block content %}
+{% load static %}
+
+<!--Section: Contact v.2-->
+<section class="mb-4" id="formulario">
+
+    <!--Section heading-->
+    <h2 class="h1-responsive font-weight-bold text-center my-4">Contáctanos</h2>
+    <!--Section description-->
+    <p class="text-center w-responsive mx-auto mb-5">¿Necesitas contactarnos? Llena los campos y a la brevedad nos
+        comunicaremos contigo por correo.</p>
+
+    <div class="row">
+
+        <!--Grid column-->
+        <div>
+            <form id="contact-form" name="contact-form" action="{% url 'index'%}" method="POST" autocomplete="on">
+                {% csrf_token %}
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                        <div id="formdiv-50">
+                            <label for="name">Nombre</label><label for="name" style="color:#a72e2e;">(*)</label>
+                            <input type="text" id="nombre" name="nombre" class="form-control">
+                        </div>
+                    <br>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                        <div id="formdiv-50">
+                            <label for="email" class="">Correo</label><label for="correo"
+                                style="color:#a72e2e;">(*)</label>
+                            <input type="email" id="correo" name="correo" class="form-control">
+                        </div>
+                    <!--Grid column-->
+                </div>
+                <br>
+                <!--Grid row-->
+
+                <!--Grid row-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form mb-0">
+                            <label for="asunto" class="">Asunto</label><label for="asunto"
+                                style="color:#a72e2e;">(*)</label>
+                            <input type="text" id="asunto" name="asunto" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <!--Grid row-->
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-12">
+
+                        <div class="md-form">
+                            <label for="message">Mensaje</label><label for="mensaje" style="color:#a72e2e;">(*)</label>
+                            <textarea type="text" id="message" name="mensaje" rows="2"
+                                class="form-control md-textarea"></textarea>
+                        </div>
+
+                    </div>
+                </div>
+                <!--Grid row-->
+                <div class="text-center text-md-left">
+                    <br>
+                    <input class="btn btn-primary" name="enviar" id="enviar" type="submit" value="Enviar">
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</section>
+
+{% endblock %}

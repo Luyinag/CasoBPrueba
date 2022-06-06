@@ -1,0 +1,73 @@
+{%extends "Plankton/plantillas/base.html"%}
+{% block title %} Plankton - Donar {% endblock %}
+{% block tiendaactive %}<a class="nav-link dropdown-toggle active" href="#" id="navbarScrollingDropdown" role="button"
+  data-bs-toggle="dropdown" aria-expanded="false">
+  Tienda
+</a>{% endblock %}
+{% block content %}
+{% load static %}
+<br>
+
+<div class="content">
+  <!-- The sidebar -->
+  <div class="sidebar" style="border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
+    <a class="active">Tienda</a>
+    <a>Todo</a>
+    <a>Ofertas</a>
+    <a>Herramientas</a>
+    <a>Plantas</a>
+  </div>
+  <div class="tiendaprod-flex" class="containerflex">
+    <!-- TODO -->
+    <div class="container" style="max-width: 300px;">
+      <a href="producto.html">
+        <img src="{% static 'plankton/img/prod-pala.jpg'%}" alt="Avatar" class="image">
+        <div class="overlay"><del>19.990</del> 9.990<br>PALA JARDINERÍA
+      </a>
+    </div>
+  </div>
+  <div class="container" style="max-width: 300px;">
+    <a href="producto.html">
+      <img src="{% static 'plankton/img/prod-narciso.jpg'%}" alt="Avatar" class="image">
+      <div class="overlay"><del>12.990</del> 5.990<br>NARCISO
+    </a>
+  </div>
+</div>
+<div class="container" style="max-width: 300px;">
+  <a href="producto.html">
+    <img src="{% static 'plankton/img/prod-jacinto.jpg'%}" alt="Avatar" class="image">
+    <div class="overlay"><del>5.990</del> 3.990<br>JACINTO
+  </a>
+</div>
+</div>
+<div class="container" style="max-width: 300px;">
+  <a href="producto.html">
+    <img src="{% static 'plankton/img/prod-regadora.jpg'%}" alt="Avatar" class="image">
+    <div class="overlay"><del>9.990</del> 7.990<br>REGADORA 5L
+  </a>
+</div>
+</div>
+<div class="container" style="max-width: 300px;">
+  <a href="producto.html">
+    <img src="{% static 'plankton/img/prod-narciso2.jpg'%}" alt="Avatar" class="image">
+    <div class="overlay"><del>10.990</del> 5.990<br>NARCISO
+  </a>
+</div>
+</div>
+</div>
+<br>
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
+
+{% endblock %}

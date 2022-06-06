@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <title>{% block title %} {% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'Plankton/css/estilo.css'%}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+  <script src="{% static 'Plankton/js/funciones.js' %}"></script>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg py-3 navbar-dark bg-dark shadow-sm">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
+        aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'index'%}">
+        <img src="{% static 'plankton/img/logo.png'%}" width="45" alt="" class="d-inline-block align-middle mr-2">
+        <span class="text-uppercase font-weight-bold"></span>Plankton</a>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            {% block indexactive %}<a class="nav-link" aria-current="page" href="{% url 'index'%}">Inicio</a>{% endblock %}
+          </li>
+          <li class="nav-item dropdown">
+            {% block tiendaactive %}<a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown"
+              role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tienda
+            </a>{% endblock %}
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="{% url 'tienda'%}">Ofertas</a></li>
+              <li><a class="dropdown-item" href="{% url 'tienda'%}">Categorías</a></li>
+            </ul>
+          <li class="nav-item dropdown">
+            {% block useractive %}<a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown"
+              role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Usuario
+            </a>{% endblock %}
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" data-toggle="modal" data-bs-toggle="modal" href="#ModalForm">Iniciar
+                  sesión</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="{% url 'usuarioreg'%}">Registrarse</a></li>
+            </ul>
+          <li class="nav-item">
+            {% block nosotrosactive %}<a class="nav-link" href="{% url 'nosotros'%}">Nosotros</a>{% endblock %}
+          </li>
+          <li class="nav-item">
+            {% block donacionactive %}<a class="nav-link" href="{% url 'donacion'%}">Donar</a>{% endblock %}
+          </li>
+          <li class="nav-item dropdown">
+            {% block administraractive %}<a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown"
+              role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Administrar
+            </a>{% endblock %}
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="{% url 'listaproductos'%}">Productos</a></li>
+              <li><a class="dropdown-item" href="{% url 'listausuarios'%}">Usuarios</a></li>
+            </ul>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- TERMINA NAVBAR -->
+  <!-- Inicio de sesión -->
+  <div class="modal fade" id="ModalForm" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Login Form -->
+        <form action="">
+          <div class="modal-header">
+            <h5 class="modal-title">Iniciar sesión</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="Username">Usuario<span class="text-danger">*</span></label>
+              <input type="text" name="username" class="form-control" id="Username" placeholder="Ingrese usuario">
+            </div>
+
+            <div class="mb-3">
+              <label for="Password">Contraseña<span class="text-danger">*</span></label>
+              <input type="password" name="password" class="form-control" id="Password"
+                placeholder="Ingrese contraseña">
+            </div>
+            <div class="mb-3">
+              <input class="form-check-input" type="checkbox" value="" id="remember" required>
+              <label class="form-check-label" for="remember">Recordarme</label>
+              <a href="#" class="float-end">¿Olvidaste la contraseña?</a>
+            </div>
+          </div>
+          <div class="modal-footer pt-4">
+            <button type="button" class="btn btn-success mx-auto w-100">Ingresar</button>
+          </div>
+          <p class="text-center">¿Nuevo cliente? &nbsp;<a href="{% url 'usuarioreg'%}">Registrarse</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  {% block content %} {% endblock %}
+
+
+  <section class="newsletter">
+    <div class="container">
+      <div class="content">
+        <h2>SUSCRÍBETE PARA ESTAR AL DÍA</h2>
+        <div class="input-group">
+          <input type="email" class="form-control" placeholder="Ingresa tu correo electrónico">
+          <span class="input-group-btn">
+            <button class="btn" type="submit">Suscribirse</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
+  <!-- FOOTER MENU -->
+  <footer class="w-100 py-4 flex-shrink-0">
+    <div class="container py-4">
+      <div class="row gy-4 gx-5">
+        <div class="col-lg-4 col-md-6">
+          <img class="img-fluid" src="{% static 'plankton/img/logo.png'%}" width="50%" height="50%">
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <h1>Sobre nosotros</h1>
+          <p>Somos Plankton. Una agrupación de vecinos enfocada a la venta de productos de jardinaría sin fines de
+            lucro.<br>
+            Buscamos ayudar a diversas fundaciones, te invitamos a ser parte de esto.</p>
+          <p>&copy; Copyrights. All rights reserved. <a class="text-primary" href="#">Plankton</a></p>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <h5>Menu</h5>
+          <ul class="list-unstyled text-muted">
+            <li><a href="{% url 'index'%}">Inicio</a></li>
+            <li class="item dropdown">
+              <a class="link dropdown-toggle" href="" id="navbarScrollingDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Tienda
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                <li><a class="dropdown-item" href="{% url 'tienda'%}">Ofertas</a></li>
+                <li><a class="dropdown-item" href="{% url 'tienda'%}">Categorías</a></li>
+              </ul>
+            <li class="item dropdown">
+              <a class="link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Usuario
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                <li><a class="dropdown-item" href="#">Iniciar sesión</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Registrarse</a></li>
+              </ul>
+            <li><a href="{% url 'nosotros'%}">Nosotros</a></li>
+            <li><a href="{% url 'faq'%}">FAQ</a></li>
+            <li><a href="{% url 'donacion'%}">Donar</a></li>
+            <li><a href="{% url 'contacto'%}">Contáctanos</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <h5>Contacto</h5>
+          <ul class="list-unstyled text-muted">
+            <li>Fono: +56945215603</li>
+            <li>Instagram: @CasoB</li>
+            <li>Facebook: @CasoB</li>
+            <li>Mail: casob@duocuc.cl</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+</body>
+
+</html>
