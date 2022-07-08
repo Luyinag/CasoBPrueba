@@ -5,3 +5,4 @@ django-rest-framework
 requests
 django-pwa
 django-allauth
+python-dateutil

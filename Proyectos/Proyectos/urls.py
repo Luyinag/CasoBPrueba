@@ -18,11 +18,13 @@ from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework import routers
-from Plankton.views import CategoriaViewSet, ProductoViewSet
+from Plankton.views import CategoriaViewSet, ProductoViewSet, MembershipViewSet
 
 router = routers.DefaultRouter()
 router.register('productos', ProductoViewSet, basename="productos")
-router.register('categoria', CategoriaViewSet, basename="categorias")
+router.register('categorias', CategoriaViewSet, basename="categorias")
+router.register('suscripciones', MembershipViewSet, basename="suscripciones")
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
